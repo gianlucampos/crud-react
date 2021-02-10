@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Tabela from './Tabela';
 import './App.css';
 
 class App extends Component {
@@ -17,25 +18,10 @@ class App extends Component {
         </div>
 
         <div style={estilo}>
-        <button>Adicionar</button>
+          <button>Adicionar</button>
         </div>
 
-        <div style={estilo}>
-          <table>
-            <tr>
-              <th>Música</th>
-              <th>Artista</th>
-            </tr>
-            <tr>
-              <th>Dani California</th>
-              <th>Red Hot Chili Peppers</th>
-            </tr>
-            <tr>
-              <th>Snow (Hey Oh)</th>
-              <th>Red Hot Chili Peppers</th>
-            </tr>
-          </table>
-        </div>
+          <Tabela/>
 
 
       </div>
