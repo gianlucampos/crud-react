@@ -7,29 +7,18 @@ class App extends Component {
   constructor() {
     super();
     this.inputMusica = React.createRef();
-    this.state = {
-      musica: [],
-    };
   }
 
-  addMusica() {
-    // alert(this.inputMusica.current.value);
-    // if (this.inputMusica.current.value.trim() === '') {
-    //   alert("Preencha a música");
-    //   this.inputMusica.current.focus();
-    //   return;
-    // }
-    // this.state.musica.push(this.inputMusica.current.value);
-    // this.setState({
-    //   musica: this.state.musica,
-    // });
-    this.appendMusica();
+  clearAllElements() {
+    this.inputMusica.current.value = null;
   }
 
-  //= () => Arrow Function JavaScript
-
-
-  appendMusica() {
+  addMusica () {
+    if (this.inputMusica.current.value.trim() === '') {
+      alert("Preencha a música");
+      this.inputMusica.current.focus();
+      return;
+    }
     var musica = this.inputMusica.current.value;
     var tr = document.createElement("tr");
     var td = document.createElement("td");
@@ -37,15 +26,13 @@ class App extends Component {
     td.appendChild(conteudo);
     tr.appendChild(td);
     document.getElementById("bodyTabela").appendChild(tr);
+    this.clearAllElements();
   }
-
-
 
   render() {
     const estilo = { float: "left", marginTop: "10px", marginRight: "20px" };
     return (
       <div>
-
         <div style={estilo}>
           Música <input type="text" ref={this.inputMusica} />
         </div>
@@ -54,8 +41,8 @@ class App extends Component {
           Artista <input type="text"></input>
         </div>
 
-        <div style={estilo} onClick={this.addMusica.bind(this)}>
-          <button>Adicionar</button>
+        <div style={estilo}>
+          <button onClick={this.addMusica.bind(this)}>Adicionar</button>
         </div>
 
         <table style={estilo}>
