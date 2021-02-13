@@ -7,26 +7,43 @@ class App extends Component {
   constructor() {
     super();
     this.inputMusica = React.createRef();
+    this.inputArtista = React.createRef();
+    this.child = React.createRef();
   }
 
   clearAllElements() {
     this.inputMusica.current.value = null;
+    this.inputArtista.current.value = null;
   }
 
-  addMusica () {
-    if (this.inputMusica.current.value.trim() === '') {
-      alert("Preencha a música");
-      this.inputMusica.current.focus();
-      return;
+  validaCampos() {
+    if (this.valor.trim() === '') {
+      alert("Preencha o campo");
+      this.focus();
+      return false;
     }
-    var musica = this.inputMusica.current.value;
-    var tr = document.createElement("tr");
-    var td = document.createElement("td");
-    var conteudo = document.createTextNode(musica);
-    td.appendChild(conteudo);
-    tr.appendChild(td);
-    document.getElementById("bodyTabela").appendChild(tr);
-    this.clearAllElements();
+    return true;
+  }
+
+  adicionar = () => {
+    let musica = {
+      valid: this.validaCampos,
+      valor: this.inputMusica.current.value,
+      focus: () => {
+        this.inputMusica.current.focus();
+      }
+    }
+    let artista = {
+      valid: this.validaCampos,
+      valor: this.inputArtista.current.value,
+      focus: () => {
+        this.inputArtista.current.focus();
+      }
+    }
+    if (musica.valid() && artista.valid()) {
+      this.child.current.add(musica.valor, artista.valor);
+      this.clearAllElements();
+    }
   }
 
   render() {
@@ -38,35 +55,14 @@ class App extends Component {
         </div>
 
         <div style={estilo} id="artista">
-          Artista <input type="text"></input>
+          Artista <input type="text" ref={this.inputArtista}></input>
         </div>
 
         <div style={estilo}>
-          <button onClick={this.addMusica.bind(this)}>Adicionar</button>
+          <button onClick={this.adicionar}>Adicionar</button>
         </div>
 
-        <table style={estilo}>
-          <thead>
-            <tr>
-              <th>Música</th>
-              <th>Artista</th>
-            </tr>
-          </thead>
-          <tbody id="bodyTabela">
-            <tr>
-              <td>Dani California</td>
-              <td>Red Hot Chili Peppers</td>
-            </tr>
-            <tr>
-              <td>Snow (Hey Oh)</td>
-              <td>Red Hot Chili Peppers</td>
-            </tr>
-          </tbody>
-        </table>
-
-
-        {/* <Tabela /> */}
-
+        <Tabela ref={this.child} />
 
       </div>
     );

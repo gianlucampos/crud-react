@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 
 class Tabela extends Component {
-    constructor() {
-        super();
-        this.state = {
-            musicas: [],
-            artistas: []
-        };
+
+    add(...args) {
+        var musica = args[0];
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        var conteudo = document.createTextNode(musica);
+        td.appendChild(conteudo);
+        tr.appendChild(td);
+        document.getElementById("bodyTabela").appendChild(tr);
     }
 
     render() {
@@ -19,7 +22,7 @@ class Tabela extends Component {
                         <th>Artista</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="bodyTabela">
                     <tr>
                         <td>Dani California</td>
                         <td>Red Hot Chili Peppers</td>
@@ -27,10 +30,6 @@ class Tabela extends Component {
                     <tr>
                         <td>Snow (Hey Oh)</td>
                         <td>Red Hot Chili Peppers</td>
-                    </tr>
-                    <tr>
-                        <td>{this.state.musicas}</td>
-                        <td>{this.state.artistas}</td>
                     </tr>
                 </tbody>
             </table>
