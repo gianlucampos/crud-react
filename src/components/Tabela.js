@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 
 class Tabela extends Component {
 
+    constructor(params) {
+        super();
+        this.id = 3;
+    }
+
+
     add(...args) {
-        var musica = args[0];
-        var tr = document.createElement("tr");
-        var td = document.createElement("td");
-        var conteudo = document.createTextNode(musica);
+        let tr = document.createElement("tr");
+        this.addLine(this.id++, tr);
+        this.addLine(args[0], tr);
+        this.addLine(args[1], tr);
+    }
+
+    addLine(elem, linha) {
+        let td = document.createElement("td");
+        let conteudo = document.createTextNode(elem);
         td.appendChild(conteudo);
-        tr.appendChild(td);
-        document.getElementById("bodyTabela").appendChild(tr);
+        linha.appendChild(td);
+        document.getElementById("bodyTabela").appendChild(linha);
     }
 
     render() {
@@ -18,16 +29,19 @@ class Tabela extends Component {
             <table style={estilo}>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Música</th>
                         <th>Artista</th>
                     </tr>
                 </thead>
                 <tbody id="bodyTabela">
                     <tr>
+                        <td>1</td>
                         <td>Dani California</td>
                         <td>Red Hot Chili Peppers</td>
                     </tr>
                     <tr>
+                        <td>2</td>
                         <td>Snow (Hey Oh)</td>
                         <td>Red Hot Chili Peppers</td>
                     </tr>
