@@ -5,6 +5,7 @@ class Tabela extends Component {
     constructor(params) {
         super();
         this.id = 3;
+        this.tabela = React.createRef();
     }
 
 
@@ -20,7 +21,7 @@ class Tabela extends Component {
         let conteudo = document.createTextNode(elem);
         td.appendChild(conteudo);
         linha.appendChild(td);
-        document.getElementById("bodyTabela").appendChild(linha);
+        this.tabela.current.appendChild(linha);
     }
 
     render() {
@@ -34,7 +35,7 @@ class Tabela extends Component {
                         <th>Artista</th>
                     </tr>
                 </thead>
-                <tbody id="bodyTabela">
+                <tbody ref={this.tabela}>
                     <tr>
                         <td>1</td>
                         <td>Dani California</td>
