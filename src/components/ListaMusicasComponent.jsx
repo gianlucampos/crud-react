@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
+import ListaMusicasService from '../services/ListaMusicasService';
 
-class ListaMusicas extends Component {
+class ListaMusicasComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            musicas: [{
-                id: 1,
-                nome: 'Dani California',
-                artista: {
-                    nome: 'Red Hot Chili Peppers',
-                    genero: 'Funky-Rock-Punky-Indie'
-                },
-                album: {
-                    titulo: 'Stadium Arcadium',
-                    anoLancamento: 2006,
-                    capa: null,
-                }
-            },
-            {
-                id: 2,
-                nome: 'Snow (Hey Oh)',
-                artista: {
-                    nome: 'Red Hot Chili Peppers',
-                    genero: 'Funky-Rock-Punky-Indie'
-                },
-                album: {
-                    titulo: 'Stadium Arcadium',
-                    anoLancamento: 2006,
-                    capa: null,
-                }
-            }]
+            musicas: []
         }
+    }
+
+    // componentDidMount(){
+    //     ListaMusicasService.getMusicas().then((res)=>{
+    //         this.setState({
+    //             musicas: res.data
+    //         });
+    //     });
+    // }
+
+    componentDidMount() {
+        this.setState({
+            musicas: ListaMusicasService.getMusicas()
+        });
     }
 
     render() {
@@ -43,8 +33,8 @@ class ListaMusicas extends Component {
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Album</th>
                                 <th>Música</th>
+                                <th>Album</th>
                                 <th>Artista</th>
                             </tr>
                         </thead>
@@ -54,8 +44,8 @@ class ListaMusicas extends Component {
                                     musica =>
                                         <tr key={musica.id}>
                                             <td>{this.state.musicas.indexOf(musica) + 1}</td>
-                                            <td>{musica.album.titulo}</td>
                                             <td>{musica.nome}</td>
+                                            <td>{musica.album.titulo}</td>
                                             <td>{musica.artista.nome}</td>
                                         </tr>
                                 )
@@ -68,4 +58,4 @@ class ListaMusicas extends Component {
     }
 }
 
-export default ListaMusicas;
+export default ListaMusicasComponent;

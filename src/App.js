@@ -1,11 +1,15 @@
 import React from 'react';
-import ListaMusicas from './components/ListaMusicas';
 import './App.css';
+import ListaMusicasComponent from './components/ListaMusicasComponent';
+import ListaMusicasService from './services/ListaMusicasService';
 
 function App() {
     return (
         <div>
-            <ListaMusicas />
+            <ListaMusicasComponent />
+            <button onClick={ListaMusicasService.testeAjax}>
+                Testa Ajax
+            </button>
         </div>
     );
 
