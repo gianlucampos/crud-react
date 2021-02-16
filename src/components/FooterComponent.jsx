@@ -4,8 +4,8 @@ class FooterComponent extends Component {
     render() {
         return (
             <div>
-                <footer>
-                    <span>Alguma coisa legal pra colocar aqui</span>
+                <footer className="footer">
+                    <span className="text-muted">Não tenho ideia do que colocar aqui!</span>
                 </footer>
             </div>
         );

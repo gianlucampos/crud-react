@@ -4,18 +4,22 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import ListaMusicasComponent from './components/ListaMusicasComponent';
 import ListaMusicasService from './services/ListaMusicasService';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
     return (
         <div>
-            <HeaderComponent />
-            <div>
-                <ListaMusicasComponent />
-                <button onClick={ListaMusicasService.testeAjax}>
-                    Testa Ajax
-                </button>
-            </div>
-            <FooterComponent />
+            <Router>
+                <HeaderComponent />
+                <div className="container">
+                    <Switch>
+                        <Route path="/" component={ListaMusicasComponent} />
+                        <Route path="/musicas" component={ListaMusicasComponent} />
+                        <ListaMusicasComponent />
+                    </Switch>
+                </div>
+                <FooterComponent />
+            </Router>
         </div>
     );
 

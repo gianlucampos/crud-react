@@ -5,10 +5,8 @@ class HeaderComponent extends Component {
         return (
             <div>
                 <header>
-                    <nav>
-                        <div>
-                            <h1>Crud React JS</h1>
-                        </div>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                        <div><h1 className="navbar-brand">Crud em React JS</h1></div>
                     </nav>
                 </header>
             </div>

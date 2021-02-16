@@ -27,9 +27,9 @@ class ListaMusicasComponent extends Component {
     render() {
         return (
             <div>
-                <h2>Lista de Músicas</h2>
-                <div>
-                    <table>
+                <h2 className="text-center">Lista de Músicas</h2>
+                <div className = "row">
+                    <table className = "table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
