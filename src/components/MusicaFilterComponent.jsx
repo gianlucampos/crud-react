@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ListaMusicasService from '../services/ListaMusicasService';
+import MusicaService from '../services/MusicaService';
 
-class ListaMusicasComponent extends Component {
+class MusicaFilterComponent extends Component {
     constructor(props) {
         super(props);
         
@@ -21,7 +21,7 @@ class ListaMusicasComponent extends Component {
 
     componentDidMount() {
         this.setState({
-            musicas: ListaMusicasService.getMusicas()
+            musicas: MusicaService.findMusicas()
         });
     }
 
@@ -68,4 +68,4 @@ class ListaMusicasComponent extends Component {
     }
 }
 
-export default ListaMusicasComponent;
+export default MusicaFilterComponent;

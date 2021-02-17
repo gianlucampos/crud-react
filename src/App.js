@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
-import ListaMusicasComponent from './components/ListaMusicasComponent';
-import ListaMusicasService from './services/ListaMusicasService';
+import MusicaFilterComponent from './components/MusicaFilterComponent';
+import MusicaService from './services/MusicaService';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import CriaMusicaComponent from './components/CriaMusicaComponent';
+import MusicaCadComponent from './components/MusicaCadComponent';
 
 function App() {
     return (
@@ -14,8 +14,8 @@ function App() {
                 <HeaderComponent />
                 <div className="container">
                     <Switch>
-                        <Route exact path={["/", "/musicas"]} component={ListaMusicasComponent} />
-                        <Route path="/musicas/create" component={CriaMusicaComponent} />
+                        <Route exact path={["/", "/musicas"]} component={MusicaFilterComponent} />
+                        <Route path="/musicas/create" component={MusicaCadComponent} />
                     </Switch>
                 </div>
                 <FooterComponent />

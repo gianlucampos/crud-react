@@ -1,6 +1,7 @@
 const URL_BASE_TESTE = "https://jsonplaceholder.typicode.com/todos/1";
+const URL_BASE = "http://localhost:8082";
 
-class ListaMusicasService {
+class MusicaService {
 
     testeAjax() {
         let xhttp = new XMLHttpRequest();
@@ -13,7 +14,7 @@ class ListaMusicasService {
         xhttp.send();
     }
 
-    getMusicas() {
+    findMusicas() {
         return [
             {
                 id: 1,
@@ -44,7 +45,13 @@ class ListaMusicasService {
         ];
     }
 
+    createMusica(musica) {
+        // Tentar fazer com ajax caso não de certo
+        // Usar axios
+        // return axios.post(URL, musica);
+    }
+
 
 }
 
-export default new ListaMusicasService();
+export default new MusicaService();

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import MusicaService from '../services/MusicaService';
 
-class CriaMusicaComponent extends Component {
+class MusicaCadComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -25,9 +26,10 @@ class CriaMusicaComponent extends Component {
             }
         };
         console.log('música => ' + JSON.stringify(musica));
+        MusicaService.createMusica(musica);
     }
 
-    cancel(){
+    cancel() {
         this.props.history.push('/musicas');
     }
 
@@ -38,17 +40,36 @@ class CriaMusicaComponent extends Component {
     render() {
         return (
             <div>
-                <br/>
+                <br />
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <br/>
+                            <br />
                             <h3 className="text-center">Adicionar Música</h3>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
                                         <label>Música </label>
                                         <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.changeNomeMusicaHandler} />
+                                        <br/>
+                                        
+                                        <label> Artista</label>
+                                        <select class="custom-select" name="nomeArtista" className="form-control">
+                                            <option value="Red Hot Chili Peppers">Red Hot Chili Peppers</option>
+                                            <option value="Blink 182">Blink 182</option>
+                                            <option value="Oasis">Oasis</option>
+                                        </select>
+                                        <br/>
+
+                                        <label> Album</label>
+                                        <select class="custom-select" name="nomeAlbum" className="form-control">
+                                            <option value="Californication">Californication</option>
+                                            <option value="Stadium Arcadium">Stadium Arcadium</option>
+                                            <option value="Blood Sugar Sex Magik">Blood Sugar Sex Magik</option>
+                                        </select>
+
+
+
                                     </div>
 
                                     <button className="btn btn-success" onClick={this.salvarMusica}>Salvar</button>
@@ -63,4 +84,4 @@ class CriaMusicaComponent extends Component {
     }
 }
 
-export default CriaMusicaComponent;
+export default MusicaCadComponent;
