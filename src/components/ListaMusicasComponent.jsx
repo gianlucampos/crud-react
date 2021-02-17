@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import ListaMusicasService from '../services/ListaMusicasService';
 
 class ListaMusicasComponent extends Component {
-
     constructor(props) {
         super(props);
+        
         this.state = {
             musicas: []
         }
+        this.addMusica = this.addMusica.bind(this);
     }
 
     // componentDidMount(){
@@ -24,12 +25,21 @@ class ListaMusicasComponent extends Component {
         });
     }
 
+    addMusica(){
+        this.props.history.push('/musicas/create');
+    }
+
     render() {
         return (
             <div>
                 <h2 className="text-center">Lista de Músicas</h2>
-                <div className = "row">
-                    <table className = "table table-striped table-bordered">
+
+                <div className="text-right">
+                    <button className="btn btn-primary" onClick={this.addMusica}>Adicionar Música</button>
+                </div>
+
+                <div className="row">
+                    <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>

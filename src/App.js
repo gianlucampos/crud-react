@@ -5,6 +5,7 @@ import HeaderComponent from './components/HeaderComponent';
 import ListaMusicasComponent from './components/ListaMusicasComponent';
 import ListaMusicasService from './services/ListaMusicasService';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CriaMusicaComponent from './components/CriaMusicaComponent';
 
 function App() {
     return (
@@ -13,9 +14,8 @@ function App() {
                 <HeaderComponent />
                 <div className="container">
                     <Switch>
-                        <Route path="/" component={ListaMusicasComponent} />
-                        <Route path="/musicas" component={ListaMusicasComponent} />
-                        <ListaMusicasComponent />
+                        <Route exact path={["/", "/musicas"]} component={ListaMusicasComponent} />
+                        <Route path="/musicas/create" component={CriaMusicaComponent} />
                     </Switch>
                 </div>
                 <FooterComponent />
