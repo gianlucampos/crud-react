@@ -26,7 +26,6 @@ class MusicaService {
                 album: {
                     titulo: 'Stadium Arcadium',
                     anoLancamento: 2006,
-                    capa: null,
                 }
             },
             {
@@ -39,7 +38,6 @@ class MusicaService {
                 album: {
                     titulo: 'Stadium Arcadium',
                     anoLancamento: 2006,
-                    capa: null,
                 }
             }
         ];

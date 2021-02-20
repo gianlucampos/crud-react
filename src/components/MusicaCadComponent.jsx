@@ -7,19 +7,34 @@ class MusicaCadComponent extends Component {
 
         this.state = {
             nomeMusica: '',
+            artista: '',
+            artistas: [] // Possivelmente será passado através dos props
         }
-        this.changeNomeMusicaHandler = this.changeNomeMusicaHandler.bind(this);
+        this.handleChangeMusica = this.handleChangeMusica.bind(this);
+        this.handleChangeCmbArtista = this.handleChangeCmbArtista.bind(this);
         this.salvarMusica = this.salvarMusica.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            artistas: [{
+                id: 1,
+                nome: 'Red Hot Chili Peppers',
+                genero: 'Funky-Rock-Punky-Indie'
+            },
+            {
+                id: 2,
+                nome: 'Blink-182',
+                genero: 'Punk-Rock-Pop'
+            }],
+        });
     }
 
     salvarMusica = (e) => {
         e.preventDefault();
         let musica = {
             nome: this.state.nomeMusica,
-            artista: {
-                nome: 'Red Hot Chili Peppers',
-                genero: 'Funky-Rock-Punky-Indie'
-            },
+            artista: this.state.artista,
             album: {
                 titulo: 'Stadium Arcadium',
                 anoLancamento: 2006,
@@ -33,9 +48,14 @@ class MusicaCadComponent extends Component {
         this.props.history.push('/musicas');
     }
 
-    changeNomeMusicaHandler = (event) => {
+    handleChangeMusica = (event) => {
         this.setState({ nomeMusica: event.target.value });
     }
+
+    handleChangeCmbArtista = (event) => {
+        this.setState({ artista: event.target.value });
+    }
+
 
     render() {
         return (
@@ -50,26 +70,18 @@ class MusicaCadComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Música </label>
-                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.changeNomeMusicaHandler} />
-                                        <br/>
-                                        
-                                        <label> Artista</label>
-                                        <select class="custom-select" name="nomeArtista" className="form-control">
-                                            <option value="Red Hot Chili Peppers">Red Hot Chili Peppers</option>
-                                            <option value="Blink 182">Blink 182</option>
-                                            <option value="Oasis">Oasis</option>
+                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.handleChangeMusica} />
+                                        <br />
+
+                                        <label>Artista </label>
+                                        <select className="form-control" value={this.state.artista}
+                                            onChange={this.handleChangeCmbArtista}>
+                                            <option value={''}></option>
+                                            {this.state.artistas.map(
+                                                artista =>
+                                                    <option key={artista.id} value={JSON.stringify(artista)}>{artista.nome}</option>
+                                            )}
                                         </select>
-                                        <br/>
-
-                                        <label> Album</label>
-                                        <select class="custom-select" name="nomeAlbum" className="form-control">
-                                            <option value="Californication">Californication</option>
-                                            <option value="Stadium Arcadium">Stadium Arcadium</option>
-                                            <option value="Blood Sugar Sex Magik">Blood Sugar Sex Magik</option>
-                                        </select>
-
-
-
                                     </div>
 
                                     <button className="btn btn-success" onClick={this.salvarMusica}>Salvar</button>
