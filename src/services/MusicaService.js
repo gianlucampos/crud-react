@@ -49,6 +49,43 @@ class MusicaService {
         // return axios.post(URL, musica);
     }
 
+    findAlbumsByArtista(artista) {
+        if (artista.id === 1) {
+            return [
+                {
+                    id: 1,
+                    titulo: 'Blood Sugar Sex Magik',
+                    anoLancamento: 1991,
+                },
+                {
+                    id: 2,
+                    titulo: 'Californication',
+                    anoLancamento: 1999,
+                },
+                {
+                    id: 3,
+                    titulo: 'Stadium Arcadium',
+                    anoLancamento: 2006,
+                },
+            ];
+        }
+        if (artista.id === 2) {
+            return [
+                {
+                    id:4,
+                    titulo: 'The Enema of State',
+                    anoLancamento: 1999
+                },
+                {
+                    id: 5,
+                    titulo: 'California',
+                    anoLancamento: 2016
+                },
+            ];
+        }
+        return 'Sem albuns cadastrados';
+    }
+
 
 }
 
