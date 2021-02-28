@@ -4,13 +4,13 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import MusicaFilterComponent from './components/MusicaFilterComponent';
 import MusicaService from './services/MusicaService';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import MusicaCadComponent from './components/MusicaCadComponent';
 
 function App() {
     return (
         <div>
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <HeaderComponent />
                 <div className="container">
                     <Switch>
