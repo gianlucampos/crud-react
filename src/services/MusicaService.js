@@ -1,3 +1,8 @@
+import Musica from "../model/Musica";
+import Album from "../model/Album";
+import Artista from "../model/Artista";
+
+
 const URL_BASE_TESTE = "https://jsonplaceholder.typicode.com/todos/1";
 const URL_BASE = "http://localhost:8082";
 
@@ -14,33 +19,27 @@ class MusicaService {
         xhttp.send();
     }
 
-    findMusicas() {
-        return [
-            {
-                id: 1,
-                nome: 'Dani California',
-                artista: {
-                    nome: 'Red Hot Chili Peppers',
-                    genero: 'Funky-Rock-Punky-Indie'
-                },
-                album: {
-                    titulo: 'Stadium Arcadium',
-                    anoLancamento: 2006,
-                }
-            },
-            {
-                id: 2,
-                nome: 'Snow (Hey Oh)',
-                artista: {
-                    nome: 'Red Hot Chili Peppers',
-                    genero: 'Funky-Rock-Punky-Indie'
-                },
-                album: {
-                    titulo: 'Stadium Arcadium',
-                    anoLancamento: 2006,
-                }
-            }
-        ];
+    retrieveById(id, classe) {
+        let artista = new Artista(1, 'Red Hot Chili Peppers', 'Funky-Rock-Punky-Indie');
+        let album = new Album(1, 'Stadium Arcadium', 2006);
+        let musica = new Musica(1, 'Dani California', album, artista);
+
+        let artista2 = new Artista(2, 'Blink-182', 'Punk-Rock-Pop-Indie');
+        let album2 = new Album(4, 'Enema of State', 1999);
+        let musica2 = new Musica(4, 'All The Small things', album, artista);
+        return id === '1' ? musica : musica2;
+    }
+
+    retriveMusicas() {
+        let artista = new Artista(1, 'Red Hot Chili Peppers', 'Funky-Rock-Punky-Indie');
+        let album = new Album(1, 'Stadium Arcadium', 2006);
+        let musica = new Musica(1, 'Dani California', album, artista);
+
+        let artista2 = new Artista(2, 'Blink-182', 'Punk-Rock-Pop-Indie');
+        let album2 = new Album(4, 'Enema of State', 1999);
+        let musica2 = new Musica(4, 'All The Small things', album2, artista2);
+
+        return [musica, musica2];
     }
 
     createMusica(musica) {
@@ -49,39 +48,17 @@ class MusicaService {
         // return axios.post(URL, musica);
     }
 
-    findAlbumsByArtista(artista) {
+    retrieveAlbumsByArtista(artista) {
+        let album1 = new Album(1, 'Blood Sugar Sex Magik', 1991);
+        let album2 = new Album(2, 'Californication', 1999);
+        let album3 = new Album(3, 'Stadium Arcadium', 2006);
+        let album4 = new Album(4, 'Enema of State', 1999);
+        let album5 = new Album(5, 'California', 2016);
         if (artista.id === 1) {
-            return [
-                {
-                    id: 1,
-                    titulo: 'Blood Sugar Sex Magik',
-                    anoLancamento: 1991,
-                },
-                {
-                    id: 2,
-                    titulo: 'Californication',
-                    anoLancamento: 1999,
-                },
-                {
-                    id: 3,
-                    titulo: 'Stadium Arcadium',
-                    anoLancamento: 2006,
-                },
-            ];
+            return [album1, album2, album3];
         }
         if (artista.id === 2) {
-            return [
-                {
-                    id:4,
-                    titulo: 'The Enema of State',
-                    anoLancamento: 1999
-                },
-                {
-                    id: 5,
-                    titulo: 'California',
-                    anoLancamento: 2016
-                },
-            ];
+            return [album4, album5];
         }
         return 'Sem albuns cadastrados';
     }

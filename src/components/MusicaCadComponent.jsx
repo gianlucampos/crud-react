@@ -6,6 +6,7 @@ class MusicaCadComponent extends Component {
         super(props);
 
         this.state = {
+            id: this.props.match.params.id,
             nomeMusica: '',
             artista: '',
             album: '',
@@ -20,24 +21,47 @@ class MusicaCadComponent extends Component {
 
 
     componentDidMount() {
-        let artistasObjects = [{
-            id: 1,
-            nome: 'Red Hot Chili Peppers',
-            genero: 'Funky-Rock-Punky-Indie'
-        },
-        {
-            id: 2,
-            nome: 'Blink-182',
-            genero: 'Punk-Rock-Pop'
-        }];
-        let albunsObjects = MusicaService.findAlbumsByArtista(artistasObjects[0]);
-        this.setState(
+        if (this.state.id === undefined) {
+            let artistasObjects = [{
+                id: 1,
+                nome: 'Red Hot Chili Peppers',
+                genero: 'Funky-Rock-Punky-Indie'
+            },
             {
+                id: 2,
+                nome: 'Blink-182',
+                genero: 'Punk-Rock-Pop'
+            }];
+            let albunsObjects = MusicaService.retrieveAlbumsByArtista(artistasObjects[0]);
+            this.setState(
+                {
+                    artistas: artistasObjects,
+                    artista: artistasObjects[0],
+                    albuns: albunsObjects,
+                    album: albunsObjects[0]
+                });
+        } else {
+            let musica = MusicaService.retrieveById(this.state.id, 'Musica');
+            let artistasObjects = [{
+                id: 1,
+                nome: 'Red Hot Chili Peppers',
+                genero: 'Funky-Rock-Punky-Indie'
+            },
+            {
+                id: 2,
+                nome: 'Blink-182',
+                genero: 'Punk-Rock-Pop'
+            }];
+            let albunsObjects = MusicaService.retrieveAlbumsByArtista(musica.artista);
+            console.log(musica.artista);
+            this.setState({
+                nomeMusica: musica.nome,
                 artistas: artistasObjects,
-                artista: artistasObjects[0],
+                artista: musica.artista,
                 albuns: albunsObjects,
-                album: albunsObjects[0]
+                album: musica.album
             });
+        }
     }
 
     salvarMusica = (e) => {
@@ -48,6 +72,7 @@ class MusicaCadComponent extends Component {
             album: this.state.album
         };
         console.log(musica);
+        console.log(this.state.id);
         MusicaService.createMusica(musica);
     }
 
@@ -62,7 +87,7 @@ class MusicaCadComponent extends Component {
     handleChangeCmbArtista = (event) => {
         let albumObject = '';
         if (event.target.value != '') {
-            albumObject = MusicaService.findAlbumsByArtista(JSON.parse(event.target.value));
+            albumObject = MusicaService.retrieveAlbumsByArtista(JSON.parse(event.target.value));
         }
         this.state.albuns = albumObject;
         this.setState({

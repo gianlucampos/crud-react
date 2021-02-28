@@ -4,11 +4,12 @@ import MusicaService from '../services/MusicaService';
 class MusicaFilterComponent extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             musicas: []
         }
         this.addMusica = this.addMusica.bind(this);
+        this.editMusica = this.editMusica.bind(this);
     }
 
     // componentDidMount(){
@@ -21,12 +22,16 @@ class MusicaFilterComponent extends Component {
 
     componentDidMount() {
         this.setState({
-            musicas: MusicaService.findMusicas()
+            musicas: MusicaService.retriveMusicas()
         });
     }
 
-    addMusica(){
+    addMusica() {
         this.props.history.push('/musicas/create');
+    }
+
+    editMusica(id) {
+        this.props.history.push(`/musicas/edit/${id}`);
     }
 
     render() {
@@ -46,6 +51,8 @@ class MusicaFilterComponent extends Component {
                                 <th>Música</th>
                                 <th>Album</th>
                                 <th>Artista</th>
+                                <th>Ações</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +64,10 @@ class MusicaFilterComponent extends Component {
                                             <td>{musica.nome}</td>
                                             <td>{musica.album.titulo}</td>
                                             <td>{musica.artista.nome}</td>
+                                            <td>
+                                                <button onClick={() => this.editMusica(musica.id)}
+                                                    className="btn btn-info">Editar</button>
+                                            </td>
                                         </tr>
                                 )
                             }
