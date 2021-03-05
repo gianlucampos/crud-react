@@ -12,17 +12,11 @@ class MusicaFilterComponent extends Component {
         this.editMusica = this.editMusica.bind(this);
     }
 
-    // componentDidMount(){
-    //     ListaMusicasService.getMusicas().then((res)=>{
-    //         this.setState({
-    //             musicas: res.data
-    //         });
-    //     });
-    // }
-
-    componentDidMount() {
-        this.setState({
-            musicas: MusicaService.retriveMusicas()
+    componentDidMount(){
+        MusicaService.retriveMusicas().then((res)=>{
+            this.setState({
+                musicas: res.data
+            });
         });
     }
 

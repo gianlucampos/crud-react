@@ -1,6 +1,7 @@
 import Musica from "../model/Musica";
 import Album from "../model/Album";
 import Artista from "../model/Artista";
+import axios from "axios";
 
 
 const URL_BASE_TESTE = "https://jsonplaceholder.typicode.com/todos/1";
@@ -19,7 +20,7 @@ class MusicaService {
         xhttp.send();
     }
 
-    retrieveById(id, classe) {
+    retrieveMusicaById(id) {
         let artista = new Artista(1, 'Red Hot Chili Peppers', 'Funky-Rock-Punky-Indie');
         let album = new Album(1, 'Stadium Arcadium', 2006);
         let musica = new Musica(1, 'Dani California', album, artista);
@@ -30,16 +31,13 @@ class MusicaService {
         return id === '1' ? musica : musica2;
     }
 
+    retrieveMusicaById2(id) { 
+        return axios.get(`${URL_BASE}/musicas/${id}`);
+    }
+
+
     retriveMusicas() {
-        let artista = new Artista(1, 'Red Hot Chili Peppers', 'Funky-Rock-Punky-Indie');
-        let album = new Album(1, 'Stadium Arcadium', 2006);
-        let musica = new Musica(1, 'Dani California', album, artista);
-
-        let artista2 = new Artista(2, 'Blink-182', 'Punk-Rock-Pop-Indie');
-        let album2 = new Album(4, 'Enema of State', 1999);
-        let musica2 = new Musica(4, 'All The Small things', album2, artista2);
-
-        return [musica, musica2];
+        return axios.get(`${URL_BASE}/musicas`);
     }
 
     createMusica(musica) {

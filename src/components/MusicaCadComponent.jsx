@@ -41,7 +41,7 @@ class MusicaCadComponent extends Component {
                     album: albunsObjects[0]
                 });
         } else {
-            let musica = MusicaService.retrieveById(this.state.id, 'Musica');
+            let musica = MusicaService.retrieveMusicaById(this.state.id);
             let artistasObjects = [{
                 id: 1,
                 nome: 'Red Hot Chili Peppers',
