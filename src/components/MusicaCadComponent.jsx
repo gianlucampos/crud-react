@@ -20,48 +20,29 @@ class MusicaCadComponent extends Component {
     }
 
 
-    componentDidMount() {
-        if (this.state.id === undefined) {
-            let artistasObjects = [{
-                id: 1,
-                nome: 'Red Hot Chili Peppers',
-                genero: 'Funky-Rock-Punky-Indie'
-            },
-            {
-                id: 2,
-                nome: 'Blink-182',
-                genero: 'Punk-Rock-Pop'
-            }];
-            let albunsObjects = MusicaService.retrieveAlbumsByArtista(artistasObjects[0]);
-            this.setState(
-                {
-                    artistas: artistasObjects,
-                    artista: artistasObjects[0],
-                    albuns: albunsObjects,
-                    album: albunsObjects[0]
-                });
-        } else {
-            let musica = MusicaService.retrieveMusicaById(this.state.id);
-            let artistasObjects = [{
-                id: 1,
-                nome: 'Red Hot Chili Peppers',
-                genero: 'Funky-Rock-Punky-Indie'
-            },
-            {
-                id: 2,
-                nome: 'Blink-182',
-                genero: 'Punk-Rock-Pop'
-            }];
-            let albunsObjects = MusicaService.retrieveAlbumsByArtista(musica.artista);
-            console.log(musica.artista);
-            this.setState({
-                nomeMusica: musica.nome,
-                artistas: artistasObjects,
-                artista: musica.artista,
-                albuns: albunsObjects,
-                album: musica.album
-            });
+    async componentDidMount() {
+        let artistas = [];  //retrieveAllArtistas
+        let albums = []; //retrieveAlbunsByArtista      
+        let nomeMusica = '';
+        let nomeArtista = '';
+        let nomeAlbum = '';
+
+        if (this.state.id != undefined) {
+            let musica = (await MusicaService.retrieveMusicaById(this.state.id)).data;
+            nomeMusica = musica.nome;
+            nomeArtista = musica.artista.nome;
+            nomeAlbum = musica.album.titulo;
+            artistas =  [musica.artista];
+            albums = [musica.album];
         }
+
+        this.setState({
+            nomeMusica: nomeMusica,
+            artista: nomeArtista,
+            album: nomeAlbum,
+            artistas: artistas,
+            albuns: artistas
+        });
     }
 
     salvarMusica = (e) => {

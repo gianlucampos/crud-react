@@ -1,11 +1,6 @@
-import Musica from "../model/Musica";
-import Album from "../model/Album";
-import Artista from "../model/Artista";
 import axios from "axios";
-
-
-const URL_BASE_TESTE = "https://jsonplaceholder.typicode.com/todos/1";
-const URL_BASE = "http://localhost:8082";
+import Album from "../model/Album";
+import Routes from "../constants/routes";
 
 class MusicaService {
 
@@ -16,34 +11,21 @@ class MusicaService {
                 document.getElementById("demo").innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", URL_BASE_TESTE, true);
+        xhttp.open("GET", Routes.URL_BASE_TESTE, true);
         xhttp.send();
     }
 
-    retrieveMusicaById(id) {
-        let artista = new Artista(1, 'Red Hot Chili Peppers', 'Funky-Rock-Punky-Indie');
-        let album = new Album(1, 'Stadium Arcadium', 2006);
-        let musica = new Musica(1, 'Dani California', album, artista);
-
-        let artista2 = new Artista(2, 'Blink-182', 'Punk-Rock-Pop-Indie');
-        let album2 = new Album(4, 'Enema of State', 1999);
-        let musica2 = new Musica(4, 'All The Small things', album, artista);
-        return id === '1' ? musica : musica2;
+    createMusica(musica) {
+        // return axios.post(URL, musica);
     }
 
-    retrieveMusicaById2(id) { 
-        return axios.get(`${URL_BASE}/musicas/${id}`);
+    retrieveMusicaById(id) { 
+        return axios.get(`${Routes.URL_BASE}/musicas/${id}`);
     }
 
 
     retriveMusicas() {
-        return axios.get(`${URL_BASE}/musicas`);
-    }
-
-    createMusica(musica) {
-        // Tentar fazer com ajax caso não de certo
-        // Usar axios
-        // return axios.post(URL, musica);
+        return axios.get(`${Routes.URL_BASE}/musicas`);
     }
 
     retrieveAlbumsByArtista(artista) {
@@ -60,8 +42,6 @@ class MusicaService {
         }
         return 'Sem albuns cadastrados';
     }
-
-
 }
 
 export default new MusicaService();
