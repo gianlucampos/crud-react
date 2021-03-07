@@ -1,15 +1,15 @@
-import Musica from "../model/Musica";
-import Album from "../model/Album";
-import Artista from "../model/Artista";
 import axios from "axios";
-
-const URL_BASE = "http://localhost:8082";
+import Routes from "../constants/routes";
 
 class ArtistaService {
 
     retrieveArtistas(){
+        return axios.get(`${Routes.URL_BASE}/artistas`);
     }
 
+    retrieveAlbumsByArtista(idArtista) {
+        return axios.get(`${Routes.URL_BASE}/artistas/${idArtista}/albums`);
+    }
 
 }
 

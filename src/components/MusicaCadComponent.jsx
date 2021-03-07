@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ArtistaService from '../services/ArtistaService';
 import MusicaService from '../services/MusicaService';
 
 class MusicaCadComponent extends Component {
@@ -21,8 +22,8 @@ class MusicaCadComponent extends Component {
 
 
     async componentDidMount() {
-        let artistas = [];  //retrieveAllArtistas
-        let albums = []; //retrieveAlbunsByArtista      
+        let artistas = (await ArtistaService.retrieveArtistas()).data;
+        let albums = [];
         let nomeMusica = '';
         let nomeArtista = '';
         let nomeAlbum = '';
@@ -32,16 +33,19 @@ class MusicaCadComponent extends Component {
             nomeMusica = musica.nome;
             nomeArtista = musica.artista.nome;
             nomeAlbum = musica.album.titulo;
-            artistas =  [musica.artista];
-            albums = [musica.album];
+            albums = (await ArtistaService.retrieveAlbumsByArtista(musica.artista.id)).data;
         }
-
+        else {
+            nomeArtista = artistas[0].nome;
+            albums = (await ArtistaService.retrieveAlbumsByArtista(artistas[0].id)).data;
+            nomeAlbum = albums[0].titulo;
+        }
         this.setState({
             nomeMusica: nomeMusica,
-            artista: nomeArtista,
-            album: nomeAlbum,
             artistas: artistas,
-            albuns: artistas
+            artista: nomeArtista,
+            albuns: albums,
+            album: nomeAlbum,
         });
     }
 
@@ -53,8 +57,7 @@ class MusicaCadComponent extends Component {
             album: this.state.album
         };
         console.log(musica);
-        console.log(this.state.id);
-        MusicaService.createMusica(musica);
+        // MusicaService.createMusica(musica);
     }
 
     cancel() {

@@ -4,25 +4,13 @@ import Routes from "../constants/routes";
 
 class MusicaService {
 
-    testeAjax() {
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                document.getElementById("demo").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", Routes.URL_BASE_TESTE, true);
-        xhttp.send();
-    }
-
     createMusica(musica) {
-        // return axios.post(URL, musica);
+        return axios.post(URL, musica);
     }
 
     retrieveMusicaById(id) { 
         return axios.get(`${Routes.URL_BASE}/musicas/${id}`);
     }
-
 
     retriveMusicas() {
         return axios.get(`${Routes.URL_BASE}/musicas`);
