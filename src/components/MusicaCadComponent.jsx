@@ -30,6 +30,15 @@ class MusicaCadComponent extends Component {
                 albums: (await ArtistaService.retrieveAlbumsByArtista(musica.artista.id)).data,
                 album: musica.album.id,
             });
+        } else {
+            let arts = (await ArtistaService.retrieveArtistas()).data;
+            let albs = (await ArtistaService.retrieveAlbumsByArtista(arts[0].id)).data
+            this.setState({
+                artistas: arts,
+                artista: arts[0].id,
+                albums: albs,
+                album: albs[0].id,
+            });
         }
     }
 
