@@ -11,6 +11,8 @@ class MusicaCadComponent extends Component {
             nomeMusica: '',
             artista: '',
             artistas: [],
+            album: '',
+            albums: [],
         }
         this.handleChangeMusica = this.handleChangeMusica.bind(this);
         this.handleChangeCmbArtista = this.handleChangeCmbArtista.bind(this);
@@ -24,7 +26,9 @@ class MusicaCadComponent extends Component {
             this.setState({
                 nomeMusica: musica.nome,
                 artistas: (await ArtistaService.retrieveArtistas()).data,
-                artista: musica.artista.nome,
+                artista: musica.artista.id,
+                albums: (await ArtistaService.retrieveAlbumsByArtista(musica.artista.id)).data,
+                album: musica.album.id,
             });
         }
     }
@@ -33,7 +37,8 @@ class MusicaCadComponent extends Component {
         e.preventDefault();
         let musica = {
             nome: this.state.nomeMusica,
-            artista: this.state.artistas[this.state.artista],
+            artista: this.state.artistas.find(e => e.id == this.state.artista),
+            album: this.state.albums.find(e => e.id == this.state.album)
         };
         console.log(musica);
         // MusicaService.createMusica(musica);
@@ -81,10 +86,19 @@ class MusicaCadComponent extends Component {
                                             onChange={this.handleChangeCmbArtista}>
                                             {this.state.artistas.map(
                                                 artista =>
-                                                    <option key={artista.id} value={artista.nome}>{artista.nome}</option>
+                                                    <option key={artista.id} value={artista.id}>{artista.nome}</option>
                                             )}
                                         </select>
                                         <br />
+                                        <label>Album </label>
+                                        <select className="form-control"
+                                            value={this.state.album}
+                                            onChange={this.handleChangeCmbAlbum}>
+                                            {this.state.albums.map(
+                                                album =>
+                                                    <option key={album.id} value={album.id}>{album.titulo}</option>
+                                            )}
+                                        </select>
                                     </div>
                                     <button className="btn btn-success" onClick={this.salvarMusica}>Salvar</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancelar</button>
