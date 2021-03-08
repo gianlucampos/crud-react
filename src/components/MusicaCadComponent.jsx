@@ -10,9 +10,7 @@ class MusicaCadComponent extends Component {
             id: this.props.match.params.id,
             nomeMusica: '',
             artista: '',
-            album: '',
-            artistas: [], // Possivelmente será passado através dos props
-            albuns: [],
+            artistas: [],
         }
         this.handleChangeMusica = this.handleChangeMusica.bind(this);
         this.handleChangeCmbArtista = this.handleChangeCmbArtista.bind(this);
@@ -20,41 +18,22 @@ class MusicaCadComponent extends Component {
         this.salvarMusica = this.salvarMusica.bind(this);
     }
 
-
     async componentDidMount() {
-        let artistas = (await ArtistaService.retrieveArtistas()).data;
-        let albums = [];
-        let nomeMusica = '';
-        let nomeArtista = '';
-        let nomeAlbum = '';
-
         if (this.state.id != undefined) {
             let musica = (await MusicaService.retrieveMusicaById(this.state.id)).data;
-            nomeMusica = musica.nome;
-            nomeArtista = musica.artista.nome;
-            nomeAlbum = musica.album.titulo;
-            albums = (await ArtistaService.retrieveAlbumsByArtista(musica.artista.id)).data;
+            this.setState({
+                nomeMusica: musica.nome,
+                artistas: (await ArtistaService.retrieveArtistas()).data,
+                artista: musica.artista.nome,
+            });
         }
-        else {
-            nomeArtista = artistas[0].nome;
-            albums = (await ArtistaService.retrieveAlbumsByArtista(artistas[0].id)).data;
-            nomeAlbum = albums[0].titulo;
-        }
-        this.setState({
-            nomeMusica: nomeMusica,
-            artistas: artistas,
-            artista: nomeArtista,
-            albuns: albums,
-            album: nomeAlbum,
-        });
     }
 
     salvarMusica = (e) => {
         e.preventDefault();
         let musica = {
             nome: this.state.nomeMusica,
-            artista: this.state.artista,
-            album: this.state.album
+            artista: this.state.artistas[this.state.artista],
         };
         console.log(musica);
         // MusicaService.createMusica(musica);
@@ -69,17 +48,9 @@ class MusicaCadComponent extends Component {
     }
 
     handleChangeCmbArtista = (event) => {
-        let albumObject = '';
-        if (event.target.value != '') {
-            albumObject = MusicaService.retrieveAlbumsByArtista(JSON.parse(event.target.value));
-        }
-        this.state.albuns = albumObject;
         this.setState({
             artista: event.target.value,
-            albuns: albumObject,
-            album: albumObject[0],
         });
-
     }
 
     handleChangeCmbAlbum = (event) => {
@@ -104,29 +75,17 @@ class MusicaCadComponent extends Component {
                                         <label>Música </label>
                                         <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.handleChangeMusica} />
                                         <br />
-
                                         <label>Artista </label>
-                                        <select className="form-control" value={this.state.artista}
+                                        <select className="form-control"
+                                            value={this.state.artista}
                                             onChange={this.handleChangeCmbArtista}>
                                             {this.state.artistas.map(
                                                 artista =>
-                                                    <option key={artista.id} value={JSON.stringify(artista)}>{artista.nome}</option>
+                                                    <option key={artista.id} value={artista.nome}>{artista.nome}</option>
                                             )}
                                         </select>
                                         <br />
-
-                                        <label>Album </label>
-                                        <select className="form-control" value={this.state.album}
-                                            onChange={this.handleChangeCmbAlbum}>
-                                            {this.state.albuns.map(
-                                                album =>
-                                                    <option key={album.id} value={JSON.stringify(album)}>{album.titulo}</option>
-                                            )}
-                                        </select>
-
-
                                     </div>
-
                                     <button className="btn btn-success" onClick={this.salvarMusica}>Salvar</button>
                                     <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancelar</button>
                                 </form>
