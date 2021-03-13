@@ -12,11 +12,25 @@ class MusicaFilterComponent extends Component {
         this.editMusica = this.editMusica.bind(this);
     }
 
-    componentDidMount(){
-        MusicaService.retriveMusicas().then((res)=>{
+    componentDidMount() {
+        console.log('Montando Tela');
+        MusicaService.retriveMusicas().then((res) => {
+            this.sortMusicas(res.data);
             this.setState({
                 musicas: res.data
             });
+        });
+    }
+
+    sortMusicas(musicas) {
+        musicas.sort((a, b) => {
+            if (a.artista.nome === b.artista.nome) {
+                return 0;
+            }
+            if (a.artista.nome > b.artista.nome) {
+                return 1;
+            }
+            return -1;
         });
     }
 
@@ -26,6 +40,18 @@ class MusicaFilterComponent extends Component {
 
     editMusica(id) {
         this.props.history.push(`/musicas/edit/${id}`);
+    }
+
+    deleteMusica(id) {
+        MusicaService.deleteMusica(id).then((res) => {
+            if (res.status === 200) {
+                this.setState({
+                    musicas: this.state.musicas.filter(e => e.id !== id)
+                });
+            } else {
+                alert("Não foi possível remover esta música");
+            }
+        });
     }
 
     render() {
@@ -59,8 +85,14 @@ class MusicaFilterComponent extends Component {
                                             <td>{musica.album.titulo}</td>
                                             <td>{musica.artista.nome}</td>
                                             <td>
-                                                <button onClick={() => this.editMusica(musica.id)}
-                                                    className="btn btn-info">Editar</button>
+                                                <button className="btn btn-info"
+                                                    style={{ marginLeft: "10px" }}
+                                                    onClick={() => this.editMusica(musica.id)}
+                                                >Editar</button>
+                                                <button className="btn btn-danger"
+                                                    style={{ marginLeft: "10px" }}
+                                                    onClick={() => this.deleteMusica(musica.id)}
+                                                >Remover</button>
                                             </td>
                                         </tr>
                                 )
