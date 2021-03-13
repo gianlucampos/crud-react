@@ -10,18 +10,18 @@ class MusicaCadComponent extends Component {
             id: this.props.match.params.id,
             nomeMusica: '',
             artista: '',
-            artistas: [],
             album: '',
+            artistas: [],
             albums: [],
         }
-        this.handleChangeMusica = this.handleChangeMusica.bind(this);
-        this.handleChangeCmbArtista = this.handleChangeCmbArtista.bind(this);
-        this.handleChangeCmbAlbum = this.handleChangeCmbAlbum.bind(this);
+        this.ChangeMusica = this.ChangeMusica.bind(this);
+        this.ChangeArtista = this.ChangeArtista.bind(this);
+        this.ChangeAlbum = this.ChangeAlbum.bind(this);
         this.salvarMusica = this.salvarMusica.bind(this);
     }
 
     async componentDidMount() {
-        if (this.state.id != undefined) {
+        if (this.state.id !== undefined) {
             let musica = (await MusicaService.retrieveMusicaById(this.state.id)).data;
             this.setState({
                 nomeMusica: musica.nome,
@@ -45,29 +45,36 @@ class MusicaCadComponent extends Component {
     salvarMusica = (e) => {
         e.preventDefault();
         let musica = {
+            id: this.state.id,
             nome: this.state.nomeMusica,
-            artista: this.state.artistas.find(e => e.id == this.state.artista),
-            album: this.state.albums.find(e => e.id == this.state.album)
+            artista: this.state.artistas.find(e => String(e.id) === String(this.state.artista)),
+            album: this.state.albums.find(e => String(e.id) === String(this.state.album))
         };
         console.log(musica);
-        // MusicaService.createMusica(musica);
+        MusicaService.createMusica(musica);
     }
 
     cancel() {
         this.props.history.push('/musicas');
     }
 
-    handleChangeMusica = (event) => {
+    ChangeMusica = (event) => {
         this.setState({ nomeMusica: event.target.value });
     }
 
-    handleChangeCmbArtista = (event) => {
+    ChangeArtista = (event) => {
         this.setState({
             artista: event.target.value,
         });
+        ArtistaService.retrieveAlbumsByArtista(event.target.value).then(response => {
+            this.setState({
+                albums: response.data,
+                album: response.data[0].id
+            });
+        });
     }
 
-    handleChangeCmbAlbum = (event) => {
+    ChangeAlbum = (event) => {
         this.setState({
             album: event.target.value
         });
@@ -87,12 +94,12 @@ class MusicaCadComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Música </label>
-                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.handleChangeMusica} />
+                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.ChangeMusica} />
                                         <br />
                                         <label>Artista </label>
                                         <select className="form-control"
                                             value={this.state.artista}
-                                            onChange={this.handleChangeCmbArtista}>
+                                            onChange={this.ChangeArtista}>
                                             {this.state.artistas.map(
                                                 artista =>
                                                     <option key={artista.id} value={artista.id}>{artista.nome}</option>
@@ -101,8 +108,7 @@ class MusicaCadComponent extends Component {
                                         <br />
                                         <label>Album </label>
                                         <select className="form-control"
-                                            value={this.state.album}
-                                            onChange={this.handleChangeCmbAlbum}>
+                                            onChange={this.ChangeAlbum}>
                                             {this.state.albums.map(
                                                 album =>
                                                     <option key={album.id} value={album.id}>{album.titulo}</option>
