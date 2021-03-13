@@ -50,8 +50,8 @@ class MusicaCadComponent extends Component {
             artista: this.state.artistas.find(e => String(e.id) === String(this.state.artista)),
             album: this.state.albums.find(e => String(e.id) === String(this.state.album))
         };
-        console.log(musica);
         MusicaService.createMusica(musica);
+        this.props.history.goBack();
     }
 
     cancel() {

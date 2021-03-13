@@ -1,11 +1,10 @@
 import React from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
-import MusicaFilterComponent from './components/MusicaFilterComponent';
-import MusicaService from './services/MusicaService';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import MusicaCadComponent from './components/MusicaCadComponent';
+import MusicaFilterComponent from './components/MusicaFilterComponent';
 
 function App() {
     return (
