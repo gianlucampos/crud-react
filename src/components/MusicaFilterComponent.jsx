@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MusicaService from '../services/MusicaService';
+import { FaTrash, FaEdit } from 'react-icons/fa';
 
 class MusicaFilterComponent extends Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class MusicaFilterComponent extends Component {
     }
 
     componentDidMount() {
-        console.log('Montando Tela');
         MusicaService.retriveMusicas().then((res) => {
             this.sortMusicas(res.data);
             this.setState({
@@ -60,7 +60,9 @@ class MusicaFilterComponent extends Component {
                 <h2 className="text-center">Lista de Músicas</h2>
 
                 <div className="text-right">
-                    <button className="btn btn-primary" onClick={this.addMusica}>Adicionar Música</button>
+                    <button style={{ marginLeft: "10px" }}
+                        className="btn btn-primary"
+                        onClick={this.addMusica}>Adicionar Música</button>
                 </div>
 
                 <div className="row">
@@ -71,35 +73,30 @@ class MusicaFilterComponent extends Component {
                                 <th>Música</th>
                                 <th>Album</th>
                                 <th>Artista</th>
-                                <th>Ações</th>
-
+                                <th>Ações
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                this.state.musicas.map(
-                                    musica =>
-                                        <tr key={musica.id}>
-                                            <td>{this.state.musicas.indexOf(musica) + 1}</td>
-                                            <td>{musica.nome}</td>
-                                            <td>{musica.album.titulo}</td>
-                                            <td>{musica.artista.nome}</td>
-                                            <td>
-                                                <button className="btn btn-info"
-                                                    style={{ marginLeft: "10px" }}
-                                                    onClick={() => this.editMusica(musica.id)}
-                                                >Editar</button>
-                                                <button className="btn btn-danger"
-                                                    style={{ marginLeft: "10px" }}
-                                                    onClick={() => this.deleteMusica(musica.id)}
-                                                >Remover</button>
-                                            </td>
-                                        </tr>
-                                )
-                            }
+                            {this.state.musicas.map(
+                                musica =>
+                                    <tr key={musica.id}>
+                                        <td>{this.state.musicas.indexOf(musica) + 1}</td>
+                                        <td>{musica.nome}</td>
+                                        <td>{musica.album.titulo}</td>
+                                        <td>{musica.artista.nome}</td>
+                                        <td>
+                                            <FaEdit color="blue" type="button" className="iconButton"
+                                                onClick={() => this.editMusica(musica.id)} />
+                                            <FaTrash color="red" type="button" className="iconButton"
+                                                onClick={() => this.deleteMusica(musica.id)} />
+                                        </td>
+                                    </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
+
             </div>
         );
     }
