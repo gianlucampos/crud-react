@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { FaEdit, FaPlus, FaPlusCircle, FaPlusSquare, FaTrash } from 'react-icons/fa';
 import MusicaService from '../services/MusicaService';
-import { FaTrash, FaEdit } from 'react-icons/fa';
 
 class MusicaFilterComponent extends Component {
     constructor(props) {
@@ -56,13 +56,26 @@ class MusicaFilterComponent extends Component {
 
     render() {
         return (
-            <div>
-                <h2 className="text-center">Lista de Músicas</h2>
+            <div className="container">
+                <div className="table-responsive">
+                    <div className="table-wrapper">
+                        <div className="table-title">
+                            <div className="row">
+                                <div className="col-5">
+                                    <h2>Músicas</h2>
+                                </div>
+                                <div className="col-7">
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={this.addMusica}>
+                                        <FaPlusCircle type="button" className="iconButton" />
+                                        Adicionar Música
+                                    </button>
 
-                <div className="text-right">
-                    <button style={{ marginLeft: "10px" }}
-                        className="btn btn-primary"
-                        onClick={this.addMusica}>Adicionar Música</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div className="row">
@@ -86,7 +99,7 @@ class MusicaFilterComponent extends Component {
                                         <td>{musica.album.titulo}</td>
                                         <td>{musica.artista.nome}</td>
                                         <td>
-                                            <FaEdit color="blue" type="button" className="iconButton"
+                                            <FaEdit color="green" type="button" className="iconButton"
                                                 onClick={() => this.editMusica(musica.id)} />
                                             <FaTrash color="red" type="button" className="iconButton"
                                                 onClick={() => this.deleteMusica(musica.id)} />
