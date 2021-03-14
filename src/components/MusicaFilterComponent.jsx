@@ -98,7 +98,7 @@ class MusicaFilterComponent extends Component {
                                             <td>
                                                 <FaEdit color="green" title="Editar"
                                                     className="iconButton"
-                                                    onClick={() => this.editMusic(musica.id)} />
+                                                    onClick={() => this.editMusica(musica.id)} />
                                                 <FaTrash color="red" title="Excluir"
                                                     className="iconButton"
                                                     onClick={() => this.deleteMusica(musica.id)} />
@@ -107,6 +107,18 @@ class MusicaFilterComponent extends Component {
                                 )}
                             </tbody>
                         </table>
+                        <div className="clearfix" style={{background: "gainsboro"}}>
+                            <div className="hint-text">Exibindo 5 de 25 resultados</div>
+                            <ul className="pagination">
+                                <li className="page-item"><a className="page-link" href="/"> Anterior</a></li>
+                                <li className="page-item active"><a href="/" className="page-link">1</a></li>
+                                <li className="page-item"><a href="/" className="page-link">2</a></li>
+                                <li className="page-item"><a href="/" className="page-link">3</a></li>
+                                <li className="page-item"><a href="/" className="page-link">4</a></li>
+                                <li className="page-item"><a href="/" className="page-link">5</a></li>
+                                <li className="page-item"><a href="/" className="page-link">Próximo</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
