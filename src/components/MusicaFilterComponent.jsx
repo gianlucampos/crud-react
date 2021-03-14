@@ -14,7 +14,7 @@ class MusicaFilterComponent extends Component {
     }
 
     componentDidMount() {
-        
+
         MusicaService.retriveMusicas().then((res) => {
             this.sortMusicas(res.data);
             this.setState({
@@ -57,7 +57,7 @@ class MusicaFilterComponent extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <div className="table-responsive">
                     <div className="table-wrapper">
                         <div className="table-title">
@@ -76,41 +76,39 @@ class MusicaFilterComponent extends Component {
                                 </div>
                             </div>
                         </div>
+                        <table className="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Música</th>
+                                    <th>Album</th>
+                                    <th>Artista</th>
+                                    <th>Ações
+                                </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.musicas.map(
+                                    musica =>
+                                        <tr key={musica.id}>
+                                            <td>{this.state.musicas.indexOf(musica) + 1}</td>
+                                            <td>{musica.nome}</td>
+                                            <td>{musica.album.titulo}</td>
+                                            <td>{musica.artista.nome}</td>
+                                            <td>
+                                                <FaEdit color="green" title="Editar"
+                                                    className="iconButton"
+                                                    onClick={() => this.editMusic(musica.id)} />
+                                                <FaTrash color="red" title="Excluir"
+                                                    className="iconButton"
+                                                    onClick={() => this.deleteMusica(musica.id)} />
+                                            </td>
+                                        </tr>
+                                )}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-                <div className="row">
-                    <table className="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Música</th>
-                                <th>Album</th>
-                                <th>Artista</th>
-                                <th>Ações
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.state.musicas.map(
-                                musica =>
-                                    <tr key={musica.id}>
-                                        <td>{this.state.musicas.indexOf(musica) + 1}</td>
-                                        <td>{musica.nome}</td>
-                                        <td>{musica.album.titulo}</td>
-                                        <td>{musica.artista.nome}</td>
-                                        <td>
-                                            <FaEdit color="green" type="button" className="iconButton"
-                                                onClick={() => this.editMusica(musica.id)} />
-                                            <FaTrash color="red" type="button" className="iconButton"
-                                                onClick={() => this.deleteMusica(musica.id)} />
-                                        </td>
-                                    </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
         );
     }
