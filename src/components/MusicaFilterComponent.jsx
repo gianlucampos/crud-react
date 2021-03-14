@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FaEdit, FaPlus, FaPlusCircle, FaPlusSquare, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaPlusCircle, FaTrash } from 'react-icons/fa';
 import MusicaService from '../services/MusicaService';
 
 class MusicaFilterComponent extends Component {
@@ -14,6 +14,7 @@ class MusicaFilterComponent extends Component {
     }
 
     componentDidMount() {
+        
         MusicaService.retriveMusicas().then((res) => {
             this.sortMusicas(res.data);
             this.setState({
