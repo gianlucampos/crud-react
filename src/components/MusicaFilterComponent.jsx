@@ -110,13 +110,13 @@ class MusicaFilterComponent extends Component {
                         <div className="clearfix" style={{background: "gainsboro"}}>
                             <div className="hint-text">Exibindo 5 de 25 resultados</div>
                             <ul className="pagination">
-                                <li className="page-item"><a className="page-link" href="/"> Anterior</a></li>
-                                <li className="page-item active"><a href="/" className="page-link">1</a></li>
-                                <li className="page-item"><a href="/" className="page-link">2</a></li>
-                                <li className="page-item"><a href="/" className="page-link">3</a></li>
-                                <li className="page-item"><a href="/" className="page-link">4</a></li>
-                                <li className="page-item"><a href="/" className="page-link">5</a></li>
-                                <li className="page-item"><a href="/" className="page-link">Próximo</a></li>
+                                <li className="page-item"><a className="page-link" href="/musicas"> Anterior</a></li>
+                                <li className="page-item active"><a href="/musicas" className="page-link">1</a></li>
+                                <li className="page-item"><a href="/musicas" className="page-link">2</a></li>
+                                <li className="page-item"><a href="/musicas" className="page-link">3</a></li>
+                                <li className="page-item"><a href="/musicas" className="page-link">4</a></li>
+                                <li className="page-item"><a href="/musicas" className="page-link">5</a></li>
+                                <li className="page-item"><a href="/musicas" className="page-link">Próximo</a></li>
                             </ul>
                         </div>
                     </div>
