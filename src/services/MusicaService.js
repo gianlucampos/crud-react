@@ -1,7 +1,7 @@
 import axios from "axios";
 import Routes from "../constants/routes";
 
-const PATH = Routes.URL_BASE + '/musicas';
+const PATH = Routes.URL_BASE_PROD + '/musicas';
 class MusicaService {
 
     createMusica(musica) {

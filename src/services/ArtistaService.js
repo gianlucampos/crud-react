@@ -4,11 +4,11 @@ import Routes from "../constants/routes";
 class ArtistaService {
 
     retrieveArtistas(){
-        return axios.get(`${Routes.URL_BASE}/artistas`);
+        return axios.get(`${Routes.URL_BASE_PROD}/artistas`);
     }
 
     retrieveAlbumsByArtista(idArtista) {
-        return axios.get(`${Routes.URL_BASE}/artistas/${idArtista}/albums`);
+        return axios.get(`${Routes.URL_BASE_PROD}/artistas/${idArtista}/albums`);
     }
 
 }
