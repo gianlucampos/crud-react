@@ -57,7 +57,7 @@ class MusicaFilterComponent extends Component {
 
     render() {
         return (
-            <div>
+            <div className="filter">
                 <div className="table-responsive">
                     <div className="table-wrapper">
                         <div className="table-title">
