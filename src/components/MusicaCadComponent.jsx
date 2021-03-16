@@ -14,8 +14,8 @@ class MusicaCadComponent extends Component {
             artistas: [],
             albums: [],
         }
-        this.ChangeMusica = this.ChangeMusica.bind(this);
-        this.ChangeArtista = this.ChangeArtista.bind(this);
+        this.changeMusica = this.changeMusica.bind(this);
+        this.changeArtista = this.changeArtista.bind(this);
         this.ChangeAlbum = this.ChangeAlbum.bind(this);
         this.salvarMusica = this.salvarMusica.bind(this);
     }
@@ -59,11 +59,11 @@ class MusicaCadComponent extends Component {
         this.props.history.push('/musicas');
     }
 
-    ChangeMusica = (event) => {
+    changeMusica = (event) => {
         this.setState({ nomeMusica: event.target.value });
     }
 
-    ChangeArtista = (event) => {
+    changeArtista = (event) => {
         this.setState({
             artista: event.target.value,
         });
@@ -95,12 +95,12 @@ class MusicaCadComponent extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Música </label>
-                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.ChangeMusica} />
+                                        <input placeholder="Nome da música" name="nomeMusica" className="form-control" value={this.state.nomeMusica} onChange={this.changeMusica} />
                                         <br />
                                         <label>Artista </label>
                                         <select className="form-control"
                                             value={this.state.artista}
-                                            onChange={this.ChangeArtista}>
+                                            onChange={this.changeArtista}>
                                             {this.state.artistas.map(
                                                 artista =>
                                                     <option key={artista.id} value={artista.id}>{artista.nome}</option>
