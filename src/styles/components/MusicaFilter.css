@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+.containerTable {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+  display: block;
+  margin: 50px auto;
+
+  border-radius: 3px;
+  /* padding: 25px 25px; */
+  padding: 300px 25px;
+  width: 60%;
+
+  background: #299be4;
+}
+
