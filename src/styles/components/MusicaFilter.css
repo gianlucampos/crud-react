@@ -66,6 +66,9 @@ table tbody tr:hover {
 }
 
 .hintText {
+  position: fixed;
+  margin: 10px;
+
   font-family: "Varela Round",sans-serif;
   font-size: 15px;
   font-weight: bold;
@@ -73,26 +76,23 @@ table tbody tr:hover {
 
 .pagination {
   display: flex;
-  float: right;
-  margin: 10px 0 10px;
-
-  padding-left: 0;
+  justify-content: flex-end;
+  
   list-style: none;
   border-radius: .25rem;
 }
 
-.page-item {
+.pagination .pageItem {
   box-sizing: border-box;
   display: list-item;
 }
 
-.page-link {
+.pagination .pageLink {
   position: relative;
   display: block;
   padding: .5rem .75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #007bff;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
@@ -117,7 +117,7 @@ table tbody tr:hover {
 }
 
 .pagination li.active a,
-.pagination li.active a.page-link {
+.pagination li.active a.pageLink {
   background: #03A9F4;
 }
 
@@ -134,18 +134,18 @@ table tbody tr:hover {
   padding-top: 6px
 }
 
-.page-item.active .page-link {
+.pageItem.active .pageLink {
   z-index: 3;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
 
-.pagination li.active a, .pagination li.active a.page-link {
+.pagination li.active a, .pagination li.active a.pageLink {
   background: #03a9f4;
 }
 
-.page-link:hover {
+.pageLink:hover {
   z-index: 2;
   color: #0056b3;
   text-decoration: none;

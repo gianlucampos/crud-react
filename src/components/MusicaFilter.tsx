@@ -43,13 +43,13 @@ export function MusicaFilter() {
       <div className={"tableBottom"}>
         <div className={"hintText"}>Exibindo 5 de 25 resultados</div>
         <ul className={"pagination"}>
-          <li className="page-item"><a className="page-link" href="##"> Anterior</a></li>
-          <li className="page-item active"><a href="##" className="page-link">1</a></li>
-          <li className="page-item"><a href="##" className="page-link">2</a></li>
-          <li className="page-item"><a href="##" className="page-link">3</a></li>
-          <li className="page-item"><a href="##" className="page-link">4</a></li>
-          <li className="page-item"><a href="##" className="page-link">5</a></li>
-          <li className="page-item"><a href="##" className="page-link">Próximo</a></li>
+          <li className="pageItem"><a className="pageLink" href="##"> Anterior</a></li>
+          <li className="pageItem active"><a href="##" className="pageLink">1</a></li>
+          <li className="pageItem"><a href="##" className="pageLink">2</a></li>
+          <li className="pageItem"><a href="##" className="pageLink">3</a></li>
+          <li className="pageItem"><a href="##" className="pageLink">4</a></li>
+          <li className="pageItem"><a href="##" className="pageLink">5</a></li>
+          <li className="pageItem"><a href="##" className="pageLink">Próximo</a></li>
         </ul>
       </div>
     </div>
