@@ -4,7 +4,7 @@ export function MusicaFilter() {
   return (
     <div className={"containerTable"}>
       <div className={"tableTitle"}>
-        <p> Músicas </p>
+        <div className={"title"}> Músicas </div>
       </div>
       <table>
         <thead>
@@ -43,13 +43,13 @@ export function MusicaFilter() {
       <div className={"tableBottom"}>
         <div className={"hintText"}>Exibindo 5 de 25 resultados</div>
         <ul className={"pagination"}>
-          <li className="pageItem"><a className="pageLink" href="##"> Anterior</a></li>
-          <li className="pageItem active"><a href="##" className="pageLink">1</a></li>
-          <li className="pageItem"><a href="##" className="pageLink">2</a></li>
-          <li className="pageItem"><a href="##" className="pageLink">3</a></li>
-          <li className="pageItem"><a href="##" className="pageLink">4</a></li>
-          <li className="pageItem"><a href="##" className="pageLink">5</a></li>
-          <li className="pageItem"><a href="##" className="pageLink">Próximo</a></li>
+          <li className={"pageItem"}><a className={"pageLink"} href="##"> Anterior</a></li>
+          <li className="pageItem active"><a href="##" className={"pageLink"}>1</a></li>
+          <li className={"pageItem"}><a href="##" className={"pageLink"}>2</a></li>
+          <li className={"pageItem"}><a href="##" className={"pageLink"}>3</a></li>
+          <li className={"pageItem"}><a href="##" className={"pageLink"}>4</a></li>
+          <li className={"pageItem"}><a href="##" className={"pageLink"}>5</a></li>
+          <li className={"pageItem"}><a href="##" className={"pageLink"}>Próximo</a></li>
         </ul>
       </div>
     </div>
