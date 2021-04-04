@@ -8,12 +8,23 @@ export function MusicaCad() {
           <h2>Cadastro</h2>
           <label> Música </label>
           <input placeholder="Nome da música" name="nomeMusica" />
-          <br/>
+          <br />
           <label> Artista </label>
-          <input placeholder="Nome da música" name="nomeMusica" />
-          <br/>
+          <select name="cmbArtista">
+            <option value="1">Red Hot Chili Peppers</option>
+            <option value="2">Blink 182</option>
+          </select>
+          <br />
           <label> Album </label>
-          <input placeholder="Nome da música" name="nomeMusica" />
+          <select name="cmbArtista">
+            <option value="1">Stadium Arcadium</option>
+            <option value="2">The Enema of State</option>
+          </select>
+          <br />
+          <div className="formButtons">
+            <button> Salvar </button>
+            <button> Cancelar </button>
+          </div>
         </div>
       </div>
     </div>
