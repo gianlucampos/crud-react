@@ -11,15 +11,42 @@
 
 .tableTitle {
   display: flex;
-  width: 100%;
-  border-radius: 3px 3px 0 0;
   padding: 16px 30px;
   background: #299be4;
 }
 
+
+
 .title {
   color: var(--white);
   font-size: 24px;
+}
+
+.rightSide {
+  display: flex;
+}
+
+.rightSide button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 10px;
+  border-radius: 2px;
+  border: none;
+  outline: none;
+  background: #fff;
+  color: #566787;
+  cursor: pointer;
+  font-family: "Varela Round", sans-serif;
+  font-size: 13px;
+}
+
+.iconButton {
+  font-size: 19px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  cursor: pointer; 
 }
 
 table { 

@@ -1,10 +1,16 @@
 import '../styles/components/MusicaFilter.css';
+import { FaPlusCircle } from 'react-icons/fa';
 
 export function MusicaFilter() {
   return (
     <div className={"containerTable"}>
       <div className={"tableTitle"}>
         <div className={"title"}> Músicas </div>
+        <div className={"rightSide"}>
+          <button>
+            <FaPlusCircle type="button" className="iconButton"/>Adicionar Música
+          </button>
+        </div>
       </div>
       <table>
         <thead>
