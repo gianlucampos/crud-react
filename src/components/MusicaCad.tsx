@@ -1,6 +1,17 @@
+import { useHistory } from 'react-router';
 import '../styles/components/MusicaCad.css'
 
 export function MusicaCad() {
+  const history = useHistory();
+
+  function saveMusica() {
+    
+  }
+
+  function cancel() {
+    history.push('/musicas');
+  }
+
   return (
     <div className={"container"}>
       <div className={"box"}>
@@ -22,8 +33,8 @@ export function MusicaCad() {
           </select>
           <br />
           <div className="formButtons">
-            <button> Salvar </button>
-            <button> Cancelar </button>
+            <button onClick={saveMusica}> Salvar </button>
+            <button onClick={cancel}> Cancelar </button>
           </div>
         </div>
       </div>
