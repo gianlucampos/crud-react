@@ -5,10 +5,10 @@ export function MusicaFilter() {
   return (
     <div className={"containerTable"}>
       <div className={"tableTitle"}>
-        <div className={"title"}> Músicas </div>
-        <div className={"rightSide"}>
+        <div className={"row"}>
+          <div className={"title"}> Músicas </div>
           <button>
-            <FaPlusCircle type="button" className="iconButton"/>Adicionar Música
+            <FaPlusCircle type="button" className="iconButton" />Adicionar Música
           </button>
         </div>
       </div>

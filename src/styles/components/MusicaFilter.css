@@ -10,24 +10,23 @@
 }
 
 .tableTitle {
-  display: flex;
   padding: 16px 30px;
   background: #299be4;
 }
 
+.row {
+  display: flex;
+  justify-content: space-between;
+}
 
-
-.title {
+.row .title {
+  position: relative;
   color: var(--white);
   font-size: 24px;
 }
 
-.rightSide {
-  display: flex;
-}
-
-.rightSide button {
-  position: absolute;
+.row  button {
+  position: relative;
   display: flex;
   align-items: center;
   height: 36px;
