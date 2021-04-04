@@ -23,6 +23,19 @@ export function MusicaFilter() {
     history.push('/musicas/create');
   }
 
+  function editMusica(id: number) {
+    history.push(`/musicas/edit/${id}`);
+  }
+
+  function deleteMusica(id: number) {
+    MusicaService.deleteMusica(id).then(() => {
+      setMusicas(musicas.filter(e => e.id !== id));
+    }).catch(exception => {
+      alert("Não foi possível remover esta música!");
+      console.log(exception);
+    });
+  }
+
   function sortMusicas(m: Musica[]) {
     m.sort((a, b) => {
       if (a.artista.nome === b.artista.nome) {
@@ -66,9 +79,11 @@ export function MusicaFilter() {
                 <td>
                   <FaEdit color="green" title="Editar"
                     className={"iconButton"}
+                    onClick={() => editMusica(musica.id)}
                   />
                   <FaTrash color="red" title="Excluir"
                     className={"iconButton"}
+                    onClick={() => deleteMusica(musica.id)}
                   />
                 </td>
               </tr>
@@ -76,7 +91,7 @@ export function MusicaFilter() {
         </tbody>
       </table>
       <div className={"tableBottom"}>
-        <div className={"hintText"}>Exibindo 5 de 25 resultados</div>
+        <div className={"hintText"}>5 de 25 resultados</div>
         <ul className={"pagination"}>
           <li className={"pageItem"}><a className={"pageLink"} href="##"> Anterior</a></li>
           <li className="pageItem active"><a href="##" className={"pageLink"}>1</a></li>

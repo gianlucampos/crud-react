@@ -51,7 +51,6 @@
 table { 
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 1rem;
   text-align: left;
   color: #212529;
 }
@@ -89,7 +88,7 @@ table tbody tr:hover {
 }
 
 .hintText {
-  position: fixed;
+  position: absolute;
   margin: 10px;
 
   font-family: "Varela Round",sans-serif;
@@ -114,7 +113,6 @@ table tbody tr:hover {
   position: relative;
   display: block;
   padding: .5rem .75rem;
-  margin-left: -1px;
   line-height: 1.25;
   background-color: #fff;
   border: 1px solid #dee2e6;
