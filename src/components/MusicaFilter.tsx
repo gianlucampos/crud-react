@@ -1,5 +1,5 @@
 import '../styles/components/MusicaFilter.css';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaEdit, FaPlusCircle, FaTrash } from 'react-icons/fa';
 
 export function MusicaFilter() {
   return (
@@ -28,21 +28,14 @@ export function MusicaFilter() {
             <td>All the small things</td>
             <td>The Enema of State</td>
             <td>Blink-182</td>
-            <td>Excluir</td>
-          </tr>
-          <tr key={2}>
-            <td>1</td>
-            <td>All the small things</td>
-            <td>The Enema of State</td>
-            <td>Blink-182</td>
-            <td>Excluir</td>
-          </tr>
-          <tr key={3}>
-            <td>1</td>
-            <td>All the small things</td>
-            <td>The Enema of State</td>
-            <td>Blink-182</td>
-            <td>Excluir</td>
+            <td>
+              <FaEdit color="green" title="Editar"
+                className={"iconButton"}
+              />
+              <FaTrash color="red" title="Excluir"
+                className={"iconButton"}
+              />
+            </td>
           </tr>
         </tbody>
       </table>
