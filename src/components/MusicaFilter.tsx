@@ -1,12 +1,46 @@
 import { FaEdit, FaPlusCircle, FaTrash } from 'react-icons/fa';
 import { useHistory } from 'react-router';
+import { Musica } from '../model/Musica';
 import '../styles/components/MusicaFilter.css';
 
 export function MusicaFilter() {
   const history = useHistory();
+  let musicas = [
+    {
+      id: 2,
+      nome: 'Dani California',
+      album: { id: 1, titulo: 'Stadium Arcadium' },
+      artista: { id: 1, nome: 'Red Hot Chili Peppers' }
+    },
+    {
+      id: 1,
+      nome: 'All the small things',
+      album: { id: 1, titulo: 'The Enema of State' },
+      artista: { id: 1, nome: 'Blink-182' }
+    },
+    {
+      id: 3,
+      nome: 'Snow Hey Oh',
+      album: { id: 1, titulo: 'Stadium Arcadium' },
+      artista: { id: 1, nome: 'Red Hot Chili Peppers' }
+    }
+  ];
+  sortMusicas(musicas);
 
   function addMusica() {
     history.push('/musicas/create');
+  }
+
+  function sortMusicas(m: Musica[]) {
+    m.sort((a, b) => {
+      if (a.artista.nome === b.artista.nome) {
+        return 0;
+      }
+      if (a.artista.nome > b.artista.nome) {
+        return 1;
+      }
+      return -1;
+    });
   }
 
   return (
@@ -30,20 +64,23 @@ export function MusicaFilter() {
           </tr>
         </thead>
         <tbody>
-          <tr key={1}>
-            <td>1</td>
-            <td>All the small things</td>
-            <td>The Enema of State</td>
-            <td>Blink-182</td>
-            <td>
-              <FaEdit color="green" title="Editar"
-                className={"iconButton"}
-              />
-              <FaTrash color="red" title="Excluir"
-                className={"iconButton"}
-              />
-            </td>
-          </tr>
+          {musicas.map(
+            musica =>
+              <tr key={musica.id}>
+                <td>{musicas.indexOf(musica) + 1}</td>
+                <td>{musica.nome}</td>
+                <td>{musica.album.titulo}</td>
+                <td>{musica.artista.nome}</td>
+                <td>
+                  <FaEdit color="green" title="Editar"
+                    className={"iconButton"}
+                  />
+                  <FaTrash color="red" title="Excluir"
+                    className={"iconButton"}
+                  />
+                </td>
+              </tr>
+          )}
         </tbody>
       </table>
       <div className={"tableBottom"}>
