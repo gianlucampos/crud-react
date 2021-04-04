@@ -1,13 +1,20 @@
-import '../styles/components/MusicaFilter.css';
 import { FaEdit, FaPlusCircle, FaTrash } from 'react-icons/fa';
+import { useHistory } from 'react-router';
+import '../styles/components/MusicaFilter.css';
 
 export function MusicaFilter() {
+  const history = useHistory();
+
+  function addMusica() {
+    history.push('/musicas/create');
+  }
+
   return (
     <div className={"containerTable"}>
       <div className={"tableTitle"}>
         <div className={"row"}>
           <div className={"title"}> Músicas </div>
-          <button>
+          <button onClick={addMusica}>
             <FaPlusCircle type="button" className="iconButton" />Adicionar Música
           </button>
         </div>
