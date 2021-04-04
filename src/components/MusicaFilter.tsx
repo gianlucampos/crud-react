@@ -1,30 +1,22 @@
+import { useEffect, useState } from 'react';
 import { FaEdit, FaPlusCircle, FaTrash } from 'react-icons/fa';
 import { useHistory } from 'react-router';
 import { Musica } from '../model/Musica';
+import MusicaService from '../services/MusicaService';
 import '../styles/components/MusicaFilter.css';
 
 export function MusicaFilter() {
   const history = useHistory();
-  let musicas = [
-    {
-      id: 2,
-      nome: 'Dani California',
-      album: { id: 1, titulo: 'Stadium Arcadium' },
-      artista: { id: 1, nome: 'Red Hot Chili Peppers' }
-    },
-    {
-      id: 1,
-      nome: 'All the small things',
-      album: { id: 1, titulo: 'The Enema of State' },
-      artista: { id: 1, nome: 'Blink-182' }
-    },
-    {
-      id: 3,
-      nome: 'Snow Hey Oh',
-      album: { id: 1, titulo: 'Stadium Arcadium' },
-      artista: { id: 1, nome: 'Red Hot Chili Peppers' }
+  const [musicas, setMusicas] = useState<Musica[]>([]);
+
+  useEffect(() => {
+    if (musicas.length === 0) {
+      MusicaService.retriveMusicas().then((res) => {
+        setMusicas(res.data);
+      });
     }
-  ];
+  });
+
   sortMusicas(musicas);
 
   function addMusica() {
