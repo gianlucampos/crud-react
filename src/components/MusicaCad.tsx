@@ -1,11 +1,21 @@
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import '../styles/components/MusicaCad.css'
+import MusicaService from '../services/MusicaService';
+import '../styles/components/MusicaCad.css';
 
-export function MusicaCad() {
+export function MusicaCad(props: any) {
+  const { match: { params: { id } } } = props;
   const history = useHistory();
+  const [nomeMusica, setNomeMusica] = useState('');
+
+  useEffect(() => {
+    MusicaService.retrieveMusicaById(id).then((res) => {
+      setNomeMusica(res.data.nome);
+    });
+  }, [id]);
 
   function saveMusica() {
-    
+    console.log(nomeMusica);
   }
 
   function cancel() {
@@ -18,7 +28,8 @@ export function MusicaCad() {
         <div className={"formCad"}>
           <h2>Cadastro</h2>
           <label> Música </label>
-          <input placeholder="Nome da música" name="nomeMusica" />
+          <input placeholder="Nome da música" name="nomeMusica" value={nomeMusica}
+            onChange={event => setNomeMusica(event.target.value)} />
           <br />
           <label> Artista </label>
           <select name="cmbArtista">

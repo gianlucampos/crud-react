@@ -16,6 +16,7 @@ function App() {
           <Switch>
             <Route exact path={["/", "/musicas"]} component={MusicaFilter} />
             <Route path="/musicas/create" component={MusicaCad} />
+            <Route path="/musicas/edit/:id" component={MusicaCad} />
           </Switch>
         </Router>
       </div>
