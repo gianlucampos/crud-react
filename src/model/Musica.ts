@@ -2,7 +2,7 @@ import { Album } from './Album';
 import { Artista } from './Artista';
 
 export interface Musica {
-  id: number;
+  id?: number;
   nome: string;
   artista: Artista;
   album: Album;

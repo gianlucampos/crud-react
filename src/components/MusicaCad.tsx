@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Album } from '../model/Album';
 import { Artista } from '../model/Artista';
+import { Musica } from '../model/Musica';
 import ArtistaService from '../services/ArtistaService';
 import MusicaService from '../services/MusicaService';
 import '../styles/components/MusicaCad.css';
@@ -30,7 +31,7 @@ export function MusicaCad(props: any) {
     } else {
       ArtistaService.retrieveArtistas().then((resArtistas) => {
         setArtistas(resArtistas.data);
-        setArtistaId(resArtistas.data.id);
+        setArtistaId(resArtistas.data[0].id);
         loadAlbums(resArtistas.data[0].id);
       });
     }
@@ -50,22 +51,22 @@ export function MusicaCad(props: any) {
   }
 
   function saveMusica() {
-    let musica = {
+    let musica: Musica = {
+      id: id,
       nome: nomeMusica,
-      artista: artistas.find(art => art.id === artistaId),
-      album: albums.find(alb => alb.id === albumId),
+      album: albums.find(alb => alb.id! === albumId)!,
+      artista: artistas.find(art => art.id! === artistaId)!
     };
-    console.log(musica);
-    
-    // MusicaService.createMusica(musica).then((response) => {
-    //   response.status === 200 ? history.goBack() : alert('Falha ao salvar!');
-    // });
+
+    MusicaService.createMusica(musica).then((response) => {
+      response.status === 200 ? history.goBack() : alert('Falha ao salvar!');
+    });
   }
 
   function cancel() {
     history.push('/musicas');
   }
-  
+
   return (
     <div className={"container"}>
       <div className={"box"}>

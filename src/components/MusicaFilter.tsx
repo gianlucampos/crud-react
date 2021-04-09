@@ -79,11 +79,11 @@ export function MusicaFilter() {
                 <td>
                   <FaEdit color="green" title="Editar"
                     className={"iconButton"}
-                    onClick={() => editMusica(musica.id)}
+                    onClick={() => editMusica(musica.id!)}
                   />
                   <FaTrash color="red" title="Excluir"
                     className={"iconButton"}
-                    onClick={() => deleteMusica(musica.id)}
+                    onClick={() => deleteMusica(musica.id!)}
                   />
                 </td>
               </tr>
