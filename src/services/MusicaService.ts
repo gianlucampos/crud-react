@@ -1,14 +1,15 @@
 import axios from "axios";
-import Routes from "../constants/routes";
+import { Musica } from "../model/Musica";
 
-const PATH = Routes.URL_BASE_PROD + '/musicas';
+const SERVER = "https://crud-reactbackend.herokuapp.com";
+const PATH = SERVER + '/musicas';
 class MusicaService {
 
-    createMusica(musica) {
+    createMusica(musica: Musica) {
         return axios.post(PATH, musica);
     }
 
-    retrieveMusicaById(id) {
+    retrieveMusicaById(id: number) {
         return axios.get(`${PATH}/${id}`);
     }
 
@@ -16,7 +17,7 @@ class MusicaService {
         return axios.get(PATH);
     }
 
-    deleteMusica(id) {
+    deleteMusica(id: number) {
         return axios.delete(`${PATH}/${id}`)
     }
 }

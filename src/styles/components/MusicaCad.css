@@ -1,0 +1,62 @@
+.container {
+  display: grid;
+  place-items: center;  
+  margin-top: 20px;
+
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); */
+
+  /* display: flex;
+  justify-content: center; */
+
+}
+
+.box {
+  border: solid 1px gainsboro;
+  border-radius: 5px;
+  min-width: 35%;
+  max-width: 50%;
+}
+
+.box h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.formCad {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 25px;
+}
+
+.formCad input,select {
+  position: relative;
+  margin-top: 10px;
+  border: solid 1px gainsboro;
+  border-radius: 5px;
+  height: 2.5rem;  
+  text-indent: 10px;
+  font-size: medium;
+  outline-color: #94c0e4c9;
+}
+
+.formButtons button {
+  margin-right: 10px;
+  cursor: pointer;
+  border: solid 1px gainsboro;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: white;
+  font-size: medium;
+}
+
+.formButtons button:first-child {
+  background: #28a745;
+}
+
+.formButtons button:nth-child(2) {
+  background: #bd2130;
+}
