@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import { useFullPageLoader } from '../hooks/UseFullPageLoader';
 import { Album } from '../model/Album';
 import { Artista } from '../model/Artista';
 import { Musica } from '../model/Musica';
@@ -15,9 +16,10 @@ export function MusicaCad(props: any) {
   const [albumId, setAlbumId] = useState<number>();
   const [artistas, setArtistas] = useState<Artista[]>([]);
   const [albums, setAlbuns] = useState<Album[]>([]);
-
+  const [loader, showLoader, hideLoader] = useFullPageLoader();
 
   useEffect(() => {
+    showLoader();
     if (id) {
       MusicaService.retrieveMusicaById(id).then((resMusicas) => {
         setNomeMusica(resMusicas.data.nome);
@@ -47,6 +49,7 @@ export function MusicaCad(props: any) {
     ArtistaService.retrieveAlbumsByArtista(artistaId).then((resAlbuns) => {
       setAlbuns(resAlbuns.data);
       setAlbumId(resAlbuns.data[0].id);
+      hideLoader();
     });
   }
 
@@ -69,7 +72,8 @@ export function MusicaCad(props: any) {
 
   return (
     <div className={"container"}>
-      <div className={"box"}>
+      {loader}
+      <div className={"box"} >
         <div className={"formCad"}>
           <h2>Cadastro</h2>
           <label> Música </label>

@@ -1,0 +1,13 @@
+.fpContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #f8f8f8ad;
+}
+.fpContainer .fpLoader {
+  top: 30%;
+  left: 45%;
+  z-index: 1000;
+  position: absolute;
+}
