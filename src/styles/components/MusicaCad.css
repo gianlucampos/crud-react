@@ -10,7 +10,6 @@
 
   /* display: flex;
   justify-content: center; */
-
 }
 
 .box {
@@ -32,8 +31,7 @@
   padding: 20px 25px;
 }
 
-.formCad input,select {
-  position: relative;
+.formCad input, select {
   margin-top: 10px;
   border: solid 1px gainsboro;
   border-radius: 5px;

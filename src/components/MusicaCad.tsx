@@ -72,7 +72,7 @@ export function MusicaCad(props: any) {
 
   return (
     <div className={"container"}>
-      {loader}
+        {loader}
       <div className={"box"} >
         <div className={"formCad"}>
           <h2>Cadastro</h2>
